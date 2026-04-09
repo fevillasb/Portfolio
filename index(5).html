@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felipe Ribeiro — Mechanical Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <!-- 📝 EDIT: Your name initials or short name -->
+  <a href="#hero" class="nav-logo">FR</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <!-- 📝 EDIT: Tagline -->
+        <p class="hero-eyebrow">Mechanical Engineering Student · University at Buffalo</p>
+        <!-- 📝 EDIT: Your name -->
+        <h1 class="hero-name">
+          Felipe<br>
+          <strong>Ribeiro</strong>
+        </h1>
+        <!-- 📝 EDIT: Short bio -->
+        <p class="hero-bio">
+          I design and build things that move — from 3D-printed robotic arms to servo-driven rover systems.
+          I turn engineering problems into working prototypes using CAD, embedded systems, and hands-on fabrication.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View projects</a>
+          <a href="#contact" class="btn btn-secondary">Get in touch</a>
+        </div>
+      </div>
+      <div class="hero-photo-wrap fade-up">
+        <div class="hero-photo-frame"></div>
+        <!-- 📝 EDIT: Drop your photo into assets/ and update the filename here -->
+        <img class="hero-photo" src="assets/profile.png" alt="Felipe Ribeiro">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <p class="section-label">About</p>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <h2 class="section-title">Engineering problems, <strong>built solutions.</strong></h2>
+        <!-- 📝 EDIT: Your bio paragraphs -->
+        <p>
+          I'm a Mechanical Engineering student at the University at Buffalo, with a focus on robotics,
+          control systems, and rapid prototyping. I thrive at the intersection of design and hardware —
+          where an idea on paper becomes something that physically works.
+        </p>
+        <p>
+          My work spans CAD modeling in Fusion 360 and SolidWorks, embedded programming with Arduino and
+          Raspberry Pi, and full mechanical fabrication. I enjoy the full cycle: concept, design, build, test, iterate.
+        </p>
+        <p>
+          Currently serving as Electronics Lead for UB ASME's IAM3D 2026 rover competition team,
+          where I'm leading integration of power systems, motor control, and onboard subsystems.
+        </p>
+      </div>
+      <div class="about-details fade-up">
+        <!-- 📝 EDIT: Your personal details -->
+        <div class="detail-row">
+          <span class="detail-label">Degree</span>
+          <span class="detail-value">B.S. Mechanical Engineering</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">University</span>
+          <span class="detail-value">University at Buffalo</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Graduating</span>
+          <span class="detail-value">May 2027</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Location</span>
+          <span class="detail-value">Buffalo, NY</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Email</span>
+          <!-- 📝 EDIT: Your email -->
+          <span class="detail-value">nyc76332@gmail.com</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-label">Focus</span>
+          <span class="detail-value">Robotics · Control Systems · CAD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="padding: 0; background: var(--white);">
+  <div class="container" style="padding-top: 80px; padding-bottom: 80px;">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid fade-up">
+      <!-- 📝 EDIT: Your skill groups and tags -->
+      <div class="skill-group">
+        <p class="skill-group-title">CAD &amp; Design</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Fusion 360</span>
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">AutoCAD</span>
+          <span class="skill-tag">PrusaSlicer</span>
+          <span class="skill-tag">3D Printing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Robotics &amp; Embedded</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Arduino</span>
+          <span class="skill-tag">Raspberry Pi</span>
+          <span class="skill-tag">ESP32</span>
+          <span class="skill-tag">PID Control</span>
+          <span class="skill-tag">Motor/ESC</span>
+          <span class="skill-tag">Servo systems</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <p class="skill-group-title">Programming</p>
+        <div class="skill-tags">
+          <span class="skill-tag">C++</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">Excel</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <p class="section-label">Projects</p>
+    <div class="projects-list">
+
+      <!-- 📝 EDIT PROJECT 1 -->
+      <div class="project-card fade-up">
+        <div class="project-img-wrap">
+          <!-- 📝 EDIT: Drop your image into assets/ and update the filename -->
+          <img src="assets/rover.jpg" alt="IAM3D Competition Rover">
+        </div>
+        <div class="project-info">
+          <p class="project-date">Jan 2026 — Present</p>
+          <h3 class="project-name">IAM3D Competition Rover</h3>
+          <p class="project-desc">
+            Full rover system designed and built for the UB ASME IAM3D 2026 competition.
+            Features a multi-battery power system, FPV camera with 2-axis gimbal, servo-actuated
+            excavator scoop, and tracked drive — all integrated with Arduino and ESP32 control.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">Fusion 360</span>
+            <span class="tool-tag">Arduino</span>
+            <span class="tool-tag">ESP32</span>
+            <span class="tool-tag">3D Printing</span>
+            <span class="tool-tag">PID</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📝 EDIT PROJECT 2 — image on the right, text on the left -->
+      <div class="project-card fade-up" style="direction: rtl;">
+        <div class="project-img-wrap" style="direction: ltr;">
+          <!-- 📝 EDIT: Drop your image into assets/ and update the filename -->
+          <img src="assets/2dof_arm.png" alt="2-DOF Excavator Arm">
+        </div>
+        <div class="project-info" style="direction: ltr;">
+          <p class="project-date">January 2026</p>
+          <h3 class="project-name">2-DOF Excavator Payload Arm</h3>
+          <p class="project-desc">
+            Fully 3D-printed excavator-style payload mechanism with two actuated joints (elbow and wrist)
+            for controlled object manipulation. Custom-designed bearings and gears provide smooth motion;
+            high-torque servos with bearing-supported pivots minimize friction.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">Fusion 360</span>
+            <span class="tool-tag">3D Printing</span>
+            <span class="tool-tag">Servo actuation</span>
+            <span class="tool-tag">Custom gearing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📝 EDIT PROJECT 3 -->
+      <div class="project-card fade-up">
+        <div class="project-img-wrap" style="background: #111; display: flex; align-items: center; justify-content: center;">
+          <!-- 📝 EDIT: Replace the span below with an img tag once you have a photo:
+               <img src="assets/pendulum.jpg" alt="Self-Balancing Pendulum"> -->
+          <span style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; text-transform: uppercase;">Add image</span>
+        </div>
+        <div class="project-info">
+          <p class="project-date">February 2026</p>
+          <h3 class="project-name">Self-Balancing Inverted Pendulum</h3>
+          <p class="project-desc">
+            Fully 3D-printed two-wheel inverted pendulum platform. Closed-loop PID control on Arduino
+            using IMU-based tilt estimation achieves real-time dynamic balance. Step-disturbance testing
+            was used to tune gains for minimal overshoot and fast settling time.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">Arduino</span>
+            <span class="tool-tag">IMU</span>
+            <span class="tool-tag">PID control</span>
+            <span class="tool-tag">3D Printing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 📝 EDIT PROJECT 4 — image on the right, text on the left -->
+      <div class="project-card fade-up" style="direction: rtl;">
+        <div class="project-img-wrap" style="background: #111; display: flex; align-items: center; justify-content: center; direction: ltr;">
+          <!-- 📝 EDIT: Replace the span below with an img tag once you have a photo:
+               <img src="assets/gimbal.jpg" alt="2-Axis Gimbal"> -->
+          <span style="font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; text-transform: uppercase;">Add image</span>
+        </div>
+        <div class="project-info" style="direction: ltr;">
+          <p class="project-date">March 2026</p>
+          <h3 class="project-name">2-Axis Gimbal Stabilization System</h3>
+          <p class="project-desc">
+            2-axis FPV camera gimbal using servo motors with RC control. PID loops on Arduino minimize
+            angular error and maintain stable platform orientation under dynamic motion.
+            Custom 3D-printed frame optimized for low rotational inertia and balanced center of mass.
+          </p>
+          <div class="project-tools">
+            <span class="tool-tag">Arduino</span>
+            <span class="tool-tag">PID control</span>
+            <span class="tool-tag">Servo motors</span>
+            <span class="tool-tag">3D Printing</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <p class="section-label">Experience</p>
+    <div class="exp-list">
+
+      <!-- 📝 EDIT EXPERIENCE 1 -->
+      <div class="exp-item fade-up">
+        <p class="exp-period">Aug 2025<br>— Present</p>
+        <div>
+          <h3 class="exp-title">Electronics Lead</h3>
+          <p class="exp-org">UB ASME — IAM3D 2026</p>
+          <ul class="exp-bullets">
+            <li>Leading electronics integration for a 3D-printed rover competition, evaluated on payload delivery against competing colleges.</li>
+            <li>Designed and wired a multi-battery power system, increasing motor performance by ~25% while regulating voltage for high-torque servos.</li>
+            <li>Programmed Arduino and ESP32 to translate RC receiver signals to ESC-driven DC motors, servos, relays, and onboard subsystems.</li>
+            <li>Built and integrated a servo-actuated excavator scoop with FPV support, laser alignment, and custom 3D-printed enclosures.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 📝 EDIT EXPERIENCE 2 -->
+      <div class="exp-item fade-up">
+        <p class="exp-period">Aug 2022<br>— Sep 2024</p>
+        <div>
+          <h3 class="exp-title">Advertising Intern</h3>
+          <p class="exp-org">Infusion by Castles · New York, NY</p>
+          <ul class="exp-bullets">
+            <li>Managed direct mail campaign files across multiple quarters, categorizing assets by market segment for client access.</li>
+            <li>Communicated directly with clients on campaign status, revisions, and delivery timelines.</li>
+            <li>Led office layout redesign during company relocation, developing spatial plans and coordinating design decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title" style="color: var(--white);">Let's work <strong>together.</strong></h2>
+    <div class="contact-grid">
+      <!-- 📝 EDIT: Contact blurb -->
+      <p class="contact-sub">
+        I'm actively looking for internship and co-op opportunities in mechanical engineering, robotics,
+        and product development. If you think I'd be a good fit, I'd love to hear from you.
+      </p>
+      <div class="contact-links">
+        <!-- 📝 EDIT: Update href values with your real links -->
+        <a href="mailto:nyc76332@gmail.com" class="contact-link">
+          <span class="contact-link-label">Email</span>
+          <span>nyc76332@gmail.com</span>
+          <span class="contact-arrow">↗</span>
+        </a>
+        <a href="https://linkedin.com/in/fevillasboas" target="_blank" class="contact-link">
+          <span class="contact-link-label">LinkedIn</span>
+          <span>linkedin.com/in/fevillasboas</span>
+          <span class="contact-arrow">↗</span>
+        </a>
+        <!-- 📝 EDIT: Add your GitHub username -->
+        <a href="https://github.com/" target="_blank" class="contact-link">
+          <span class="contact-link-label">GitHub</span>
+          <span>github.com/[your-username]</span>
+          <span class="contact-arrow">↗</span>
+        </a>
+        <a href="tel:7186031100" class="contact-link">
+          <span class="contact-link-label">Phone</span>
+          <span>718-603-1100</span>
+          <span class="contact-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <!-- 📝 EDIT: Your name -->
+  <span>© 2026 Felipe Ribeiro</span>
+  <span>Mechanical Engineering · University at Buffalo</span>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
