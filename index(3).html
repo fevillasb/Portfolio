@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Felipe Ribeiro — Mechanical Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================
+       TOKENS
+    ============================================ */
+    :root {
+      --bg:          #0a0a0a;
+      --bg2:         #0d0d0d;
+      --bg-card:     #111111;
+      --bg-card-h:   #161616;
+      --border:      #1e1e1e;
+      --border-h:    #2a2a2a;
+      --text:        #e8e8e0;
+      --muted:       #5a5a55;
+      --dim:         #333330;
+      --accent:      #c8f04a;
+      --accent-bg:   rgba(200,240,74,0.07);
+      --accent-glow: rgba(200,240,74,0.18);
+      --mono:        'JetBrains Mono', 'Courier New', monospace;
+      --display:     'Syne', sans-serif;
+      --max:         1140px;
+      --ease:        0.2s ease;
+    }
+
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    img { display: block; max-width: 100%; }
+    strong { color: var(--accent); font-weight: 500; }
+
+    /* ============================================
+       SCANLINES
+    ============================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.06) 2px,
+        rgba(0,0,0,0.06) 4px
+      );
+    }
+
+    /* ============================================
+       NAV
+    ============================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 3rem;
+      background: rgba(10,10,10,0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+    .nav-logo span { color: var(--muted); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .nav-links a {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      transition: color var(--ease);
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-links a em {
+      color: var(--accent);
+      font-style: normal;
+      margin-right: 0.25rem;
+      font-size: 0.68rem;
+    }
+
+    /* ============================================
+       HERO
+    ============================================ */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      align-items: center;
+      gap: 4rem;
+      padding: 9rem 3rem 5rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .hero-tag {
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: up 0.6s 0.1s ease forwards;
+    }
+    .hero-name {
+      font-family: var(--display);
+      font-weight: 800;
+      line-height: 0.95;
+      margin-bottom: 1.4rem;
+      opacity: 0;
+      animation: up 0.6s 0.2s ease forwards;
+    }
+    .hero-name .first {
+      display: block;
+      font-size: clamp(3.8rem, 6.5vw, 6rem);
+      color: var(--text);
+      letter-spacing: -0.03em;
+    }
+    .hero-name .last {
+      display: block;
+      font-size: clamp(3.8rem, 6.5vw, 6rem);
+      color: var(--accent);
+      letter-spacing: -0.03em;
+    }
+    .hero-role {
+      font-size: 0.82rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: up 0.6s 0.3s ease forwards;
+    }
+    .hero-role .cur { color: var(--accent); animation: blink 1s step-end infinite; }
+    .hero-desc {
+      font-size: 0.87rem;
+      color: var(--muted);
+      line-height: 1.95;
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0;
+      animation: up 0.6s 0.4s ease forwards;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: up 0.6s 0.5s ease forwards;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.68rem 1.5rem;
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+    .btn-solid {
+      background: var(--accent);
+      color: #0a0a0a;
+      border: 1px solid var(--accent);
+    }
+    .btn-solid:hover {
+      background: transparent;
+      color: var(--accent);
+      box-shadow: 0 0 22px var(--accent-glow);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border-h);
+    }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .hero-status {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.72rem;
+      color: var(--dim);
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: up 0.6s 0.6s ease forwards;
+    }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2.2s ease infinite;
+    }
+
+    /* HERO IMAGE */
+    .hero-img-side {
+      display: flex;
+      justify-content: center;
+      opacity: 0;
+      animation: fadein 0.9s 0.3s ease forwards;
+    }
+    .hero-img-wrap {
+      position: relative;
+      width: 320px;
+    }
+    .hero-img-wrap img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      object-position: center top;
+      border: 1px solid var(--border);
+      filter: grayscale(15%) contrast(1.05);
+      transition: filter 0.4s ease;
+      display: block;
+    }
+    .hero-img-wrap:hover img { filter: grayscale(0%) contrast(1); }
+    /* corner brackets */
+    .hero-img-wrap::before,
+    .hero-img-wrap::after,
+    .corner-bl,
+    .corner-br {
+      content: '';
+      position: absolute;
+      width: 16px; height: 16px;
+      border-color: var(--accent);
+      border-style: solid;
+    }
+    .hero-img-wrap::before { top: -5px; left: -5px; border-width: 2px 0 0 2px; }
+    .hero-img-wrap::after  { top: -5px; right: -5px; border-width: 2px 2px 0 0; }
+    .corner-bl { bottom: -5px; left: -5px; border-width: 0 0 2px 2px; }
+    .corner-br { bottom: -5px; right: -5px; border-width: 0 2px 2px 0; }
+    .img-label {
+      font-size: 0.62rem;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+
+    /* ============================================
+       SECTION SHARED
+    ============================================ */
+    section {
+      padding: 6rem 0;
+    }
+    section:nth-child(odd) { background: var(--bg2); }
+    .inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 3.5rem;
+    }
+    .sec-num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+    }
+    .sec-head h2 {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .sec-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ============================================
+       ABOUT
+    ============================================ */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-bio p {
+      font-size: 0.86rem;
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 1.1rem;
+      font-weight: 300;
+    }
+    .edu {
+      margin-top: 2rem;
+      padding: 1.2rem 1.25rem;
+      border: 1px solid var(--border);
+      border-left: 2px solid var(--accent);
+      background: var(--accent-bg);
+    }
+    .edu-tag {
+      font-size: 0.65rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .edu-deg {
+      font-size: 0.88rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .edu-sch { font-size: 0.75rem; color: var(--muted); }
+
+    .skills-cols {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .skill-group-label {
+      font-size: 0.67rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.6rem;
+    }
+    .skill-group ul li {
+      font-size: 0.81rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      transition: color var(--ease);
+      font-weight: 300;
+    }
+    .skill-group ul li:last-child { border-bottom: none; }
+    .skill-group ul li:hover { color: var(--text); }
+    .skill-group ul li::before { content: '›'; color: var(--accent); }
+
+    /* ============================================
+       PROJECTS
+    ============================================ */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .card {
+      background: var(--bg-card);
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--ease);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 2px; height: 0;
+      background: var(--accent);
+      transition: height 0.35s ease;
+    }
+    .card:hover::before { height: 100%; }
+    .card:hover { background: var(--bg-card-h); }
+    .card.lead { border-top: 2px solid var(--accent); }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .card-type {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .card-date { font-size: 0.65rem; color: var(--dim); }
+    .card-glyph {
+      font-size: 1.2rem;
+      color: var(--border-h);
+      transition: color var(--ease);
+    }
+    .card:hover .card-glyph { color: var(--accent); }
+    .card h3 {
+      font-family: var(--display);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      line-height: 1.2;
+    }
+    .card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .tags li {
+      font-size: 0.62rem;
+      font-weight: 500;
+      color: var(--dim);
+      border: 1px solid var(--border);
+      padding: 0.18rem 0.48rem;
+      letter-spacing: 0.05em;
+      transition: all var(--ease);
+    }
+    .card:hover .tags li { border-color: var(--border-h); color: var(--muted); }
+
+    /* ============================================
+       EXPERIENCE
+    ============================================ */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 175px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date { font-size: 0.7rem; color: var(--dim); letter-spacing: 0.04em; padding-top: 0.1rem; white-space: nowrap; }
+    .exp-role {
+      font-family: var(--display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    .exp-co { font-size: 0.75rem; color: var(--accent); margin-bottom: 0.85rem; }
+    .exp-bullets li {
+      font-size: 0.81rem;
+      color: var(--muted);
+      line-height: 1.75;
+      padding: 0.22rem 0 0.22rem 1rem;
+      position: relative;
+      font-weight: 300;
+    }
+    .exp-bullets li::before { content: '›'; position: absolute; left: 0; color: var(--accent); }
+
+    /* ============================================
+       CONTACT
+    ============================================ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-head {
+      font-family: var(--display);
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+    .contact-sub { font-size: 0.83rem; color: var(--muted); line-height: 1.85; font-weight: 300; }
+
+    .contact-list {
+      border: 1px solid var(--border);
+    }
+    .c-item {
+      display: grid;
+      grid-template-columns: 72px 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      transition: background var(--ease);
+    }
+    .c-item:last-child { border-bottom: none; }
+    .c-item:hover { background: var(--accent-bg); }
+    .c-key { font-size: 0.62rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+    .c-val { font-size: 0.8rem; color: var(--muted); }
+    .c-arr { font-size: 0.8rem; color: var(--dim); transition: color var(--ease), transform var(--ease); }
+    .c-item:hover .c-arr { color: var(--accent); transform: translateX(3px); }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    footer {
+      background: #060606;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.3rem 3rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.68rem;
+      color: var(--dim);
+      letter-spacing: 0.06em;
+    }
+
+    /* ============================================
+       ANIMATIONS
+    ============================================ */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadein {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.45; transform: scale(0.75); }
+    }
+
+    /* ============================================
+       RESPONSIVE
+    ============================================ */
+    @media (max-width: 960px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 8rem 1.5rem 5rem;
+        gap: 3rem;
+      }
+      .hero-desc { margin-left: auto; margin-right: auto; }
+      .hero-btns { justify-content: center; }
+      .hero-status { justify-content: center; }
+      .hero-img-side { justify-content: center; }
+      .hero-img-wrap { width: 270px; }
+      .hero-img-wrap img { height: 330px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .project-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+
+      .inner { padding: 0 1.5rem; }
+      section { padding: 5rem 0; }
+      footer { flex-direction: column; gap: 0.4rem; text-align: center; padding: 1.5rem; }
+    }
+
+    @media (max-width: 540px) {
+      .nav-links { display: none; }
+      .hero-name .first,
+      .hero-name .last { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><span>[</span>FR_PORTFOLIO.v3<span>]</span></div>
+    <ul class="nav-links">
+      <li><a href="#about"><em>01.</em>About</a></li>
+      <li><a href="#projects"><em>02.</em>Projects</a></li>
+      <li><a href="#experience"><em>03.</em>Experience</a></li>
+      <li><a href="#contact"><em>04.</em>Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-left">
+      <div class="hero-tag">// Mechanical Engineering Portfolio</div>
+      <h1 class="hero-name">
+        <span class="first">Felipe</span>
+        <span class="last">Ribeiro</span>
+      </h1>
+      <p class="hero-role"><span class="cur">▌</span> Electronics Lead · UB ASME</p>
+      <p class="hero-desc">
+        I build things that move, balance, and respond.<br />
+        From PID-controlled robots to 3D-printed rovers —<br />
+        I take ideas and make them physical.
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-solid">View Projects →</a>
+        <a href="Engineergoods.pdf" class="btn btn-ghost" target="_blank">Resume ↗</a>
+      </div>
+      <div class="hero-status">
+        <span class="dot"></span>
+        Open to internships · Buffalo, NY
+      </div>
+    </div>
+    <div class="hero-img-side">
+      <div class="hero-img-wrap">
+        <span class="corner-bl"></span>
+        <span class="corner-br"></span>
+        <img src="DBEDC174-F8FE-4C82-BD27-8274E4AA3193.png" alt="Felipe Ribeiro" />
+        <div class="img-label">felipe_ribeiro.jpg</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="inner">
+      <div class="sec-head">
+        <span class="sec-num">01</span>
+        <h2>About</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-bio">
+          <p>
+            Mechanical Engineering student at the <strong>University at Buffalo</strong>, expected May 2027.
+            I work at the intersection of hardware, embedded systems, and mechanical design —
+            turning rough ideas into functional, testable prototypes.
+          </p>
+          <p>
+            Currently leading electronics integration for UB ASME's IAM3D rover competition,
+            where I design power systems, program microcontrollers, and build mechanisms
+            that work under real competition pressure.
+          </p>
+          <div class="edu">
+            <div class="edu-tag">// Education</div>
+            <div class="edu-deg">B.S. Mechanical Engineering</div>
+            <div class="edu-sch">University at Buffalo · Expected May 2027</div>
+          </div>
+        </div>
+        <div class="skills-cols">
+          <div class="skill-group">
+            <div class="skill-group-label">// Robotics &amp; Embedded</div>
+            <ul>
+              <li>Arduino &amp; ESP32</li>
+              <li>Raspberry Pi</li>
+              <li>Motor / ESC Integration</li>
+              <li>Gimbal Systems</li>
+              <li>PID Control</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">// CAD &amp; Tools</div>
+            <ul>
+              <li>Fusion 360</li>
+              <li>SolidWorks</li>
+              <li>AutoCAD</li>
+              <li>PrusaSlicer</li>
+            </ul>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">// Programming</div>
+            <ul>
+              <li>C++</li>
+              <li>MATLAB</li>
+              <li>Excel</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="inner">
+      <div class="sec-head">
+        <span class="sec-num">02</span>
+        <h2>Projects</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="project-grid">
+
+        <article class="card lead">
+          <div class="card-head">
+            <div>
+              <span class="card-type">Electronics Lead</span>
+              <span class="card-date">Aug 2025 – Present</span>
+            </div>
+            <span class="card-glyph">⚙</span>
+          </div>
+          <h3>UB ASME — IAM3D Rover</h3>
+          <p>Leading full electronics integration for a 3D-printed rover competing against colleges on payload delivery. Designed a multi-battery power system for ~25% motor performance gain, programmed Arduino + ESP32 for RC signal translation, and built a servo-actuated excavator scoop with FPV camera and laser alignment.</p>
+          <ul class="tags">
+            <li>Arduino</li><li>ESP32</li><li>Power Systems</li><li>FPV</li><li>3D Printing</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <span class="card-type">Project</span>
+              <span class="card-date">March 2026</span>
+            </div>
+            <span class="card-glyph">◎</span>
+          </div>
+          <h3>2-Axis Gimbal Stabilization</h3>
+          <p>Designed and built a 2-axis gimbal for FPV camera stabilization using servo motors with RC control. Implemented PID control loops on Arduino to minimize angular error under dynamic loads. Custom 3D-printed frame optimized for low rotational inertia and balanced center of mass.</p>
+          <ul class="tags">
+            <li>PID Control</li><li>Arduino</li><li>Fusion 360</li><li>Servo Motors</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <span class="card-type">Project</span>
+              <span class="card-date">February 2026</span>
+            </div>
+            <span class="card-glyph">△</span>
+          </div>
+          <h3>Self-Balancing Inverted Pendulum</h3>
+          <p>Fully 3D-printed two-wheel inverted pendulum platform with closed-loop PID control via IMU-based tilt estimation. Characterized transient response through step-disturbance testing, tuning control gains to minimize overshoot and settling time.</p>
+          <ul class="tags">
+            <li>PID Control</li><li>IMU</li><li>C++</li><li>Control Systems</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <span class="card-type">Project</span>
+              <span class="card-date">January 2026</span>
+            </div>
+            <span class="card-glyph">⟁</span>
+          </div>
+          <h3>2-DOF Excavator Payload Mechanism</h3>
+          <p>Designed a 3D-printed excavator-style payload system in Fusion 360 with two actuated joints (elbow, wrist). Created custom printed bearings and gears; integrated high-torque servos with bearing-supported pivot points to reduce friction and enable precise object manipulation.</p>
+          <ul class="tags">
+            <li>Fusion 360</li><li>Servo Actuation</li><li>Mechanical Design</li><li>3D Printing</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="inner">
+      <div class="sec-head">
+        <span class="sec-num">03</span>
+        <h2>Experience</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-date">Aug 2025 – Present</div>
+          <div>
+            <div class="exp-role">Electronics Lead</div>
+            <div class="exp-co">UB ASME — IAM3D Competition</div>
+            <ul class="exp-bullets">
+              <li>Leading electronics integration for a 3D-printed rover competition evaluated on payload delivery effectiveness</li>
+              <li>Designed multi-battery power system, increasing rover motor performance by ~25% while regulating voltage for high-torque servos</li>
+              <li>Programmed Arduino and ESP32 to translate RC receiver signals to ESC-driven DC motors, servos, and onboard subsystems</li>
+              <li>Built servo-actuated excavator scoop with FPV camera support, laser alignment, and custom 3D-printed enclosures</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-date">Aug 2022 – Sep 2024</div>
+          <div>
+            <div class="exp-role">Advertising Intern</div>
+            <div class="exp-co">Infusion by Castles · New York, NY</div>
+            <ul class="exp-bullets">
+              <li>Managed and organized direct mail campaign files across multiple quarters for client access and review</li>
+              <li>Communicated directly with clients on campaign status, revisions, and delivery timelines</li>
+              <li>Led office layout redesign during company relocation, developing spatial plans and coordinating design decisions</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="inner">
+      <div class="sec-head">
+        <span class="sec-num">04</span>
+        <h2>Contact</h2>
+        <div class="sec-line"></div>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <p class="contact-head">Let's build<br />something.</p>
+          <p class="contact-sub">
+            Open to mechanical engineering internships for Summer 2026 and beyond.
+            Reach out — I respond fast.
+          </p>
+        </div>
+        <div class="contact-list">
+          <a href="mailto:nyc76332@gmail.com" class="c-item">
+            <span class="c-key">email</span>
+            <span class="c-val">nyc76332@gmail.com</span>
+            <span class="c-arr">→</span>
+          </a>
+          <a href="tel:7186031100" class="c-item">
+            <span class="c-key">phone</span>
+            <span class="c-val">718-603-1100</span>
+            <span class="c-arr">→</span>
+          </a>
+          <a href="https://linkedin.com/in/fevillasboas" target="_blank" class="c-item">
+            <span class="c-key">linkedin</span>
+            <span class="c-val">fevillasboas</span>
+            <span class="c-arr">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Felipe Ribeiro</span>
+    <span>[ ME · University at Buffalo ]</span>
+    <span>Built by hand.</span>
+  </footer>
+
+</body>
+</html>
