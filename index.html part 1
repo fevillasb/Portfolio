@@ -18,6 +18,7 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#bbot">Bbot</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -246,6 +247,96 @@
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- BBOT SPOTLIGHT -->
+<section id="bbot">
+  <div class="container">
+    <p class="section-label">Featured Project</p>
+    <div class="bbot-header fade-up">
+      <div>
+        <p class="project-date">February 2026</p>
+        <h2 class="section-title">Self-Balancing<br><strong>Inverted Pendulum</strong></h2>
+      </div>
+      <p class="bbot-intro">
+        A fully 3D-printed two-wheel balancing robot controlled by a closed-loop PID system.
+        The platform achieves real-time dynamic balance using IMU-based tilt estimation,
+        with tuned gains for minimal overshoot and fast disturbance rejection.
+      </p>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="bbot-video-wrap fade-up">
+      <!-- 📝 EDIT: Replace with your YouTube embed URL or use a <video> tag for a local file -->
+      <!-- YouTube example: src="https://www.youtube.com/embed/YOUR_VIDEO_ID" -->
+      <!-- Local video example: replace the entire iframe with:
+           <video controls><source src="assets/bbot-demo.mp4" type="video/mp4"></video> -->
+      <div class="bbot-video-placeholder">
+        <span>📝 Drop your video embed here</span>
+        <p>YouTube iframe or &lt;video&gt; tag</p>
+      </div>
+    </div>
+
+    <!-- IMAGE GALLERY -->
+    <div class="bbot-gallery fade-up">
+      <!-- 📝 EDIT: Add your Bbot images to assets/ and update filenames -->
+      <div class="bbot-gallery-main">
+        <img src="assets/Bbot V3.png" alt="Self-balancing robot — front view">
+      </div>
+      <div class="bbot-gallery-side">
+        <!-- 📝 EDIT: Add 2–3 more angles/build photos -->
+        <div class="bbot-gallery-thumb bbot-placeholder"><span>Photo 2</span></div>
+        <div class="bbot-gallery-thumb bbot-placeholder"><span>Photo 3</span></div>
+      </div>
+    </div>
+
+    <!-- TECHNICAL DEEP DIVE -->
+    <div class="bbot-tech fade-up">
+      <div class="bbot-tech-block">
+        <p class="bbot-tech-label">Control System</p>
+        <h3 class="bbot-tech-title">PID Balance Loop</h3>
+        <p class="bbot-tech-body">
+          An MPU-6050 IMU provides raw accelerometer and gyroscope data, fused via a
+          complementary filter to estimate the robot's tilt angle. The Arduino reads this
+          angle at ~100 Hz and runs a discrete PID controller, computing a motor output
+          that drives the robot back toward vertical.
+        </p>
+        <!-- 📝 EDIT: Update with your actual tuned values -->
+        <div class="bbot-gains">
+          <div class="bbot-gain"><span class="gain-label">Kp</span><span class="gain-val">—</span></div>
+          <div class="bbot-gain"><span class="gain-label">Ki</span><span class="gain-val">—</span></div>
+          <div class="bbot-gain"><span class="gain-label">Kd</span><span class="gain-val">—</span></div>
+        </div>
+      </div>
+
+      <div class="bbot-tech-block">
+        <p class="bbot-tech-label">Hardware</p>
+        <h3 class="bbot-tech-title">Mechanical &amp; Electronics</h3>
+        <ul class="bbot-spec-list">
+          <!-- 📝 EDIT: Update with your actual components -->
+          <li><span class="spec-key">MCU</span><span class="spec-val">Arduino Nano / Uno</span></li>
+          <li><span class="spec-key">IMU</span><span class="spec-val">MPU-6050 (I²C)</span></li>
+          <li><span class="spec-key">Motors</span><span class="spec-val">DC gear motors w/ encoders</span></li>
+          <li><span class="spec-key">Driver</span><span class="spec-val">L298N H-bridge</span></li>
+          <li><span class="spec-key">Power</span><span class="spec-val">2S LiPo</span></li>
+          <li><span class="spec-key">Frame</span><span class="spec-val">Fully 3D-printed (PLA)</span></li>
+        </ul>
+      </div>
+
+      <div class="bbot-tech-block">
+        <p class="bbot-tech-label">Tuning &amp; Testing</p>
+        <h3 class="bbot-tech-title">Step-Disturbance Method</h3>
+        <p class="bbot-tech-body">
+          Gains were tuned iteratively by applying step disturbances (hand pushes) and
+          observing recovery behavior. Kp was raised until oscillation appeared, then Kd
+          was increased to damp it. Ki was added last to eliminate steady-state lean.
+          Final validation used serial-plotted angle data to confirm settling time and
+          overshoot were within acceptable bounds.
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
 
