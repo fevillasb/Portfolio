@@ -440,9 +440,7 @@ section { padding: 100px 0; }
 .bbot-gallery-main {
   overflow: hidden;
   background: var(--gray-200);
-  aspect-ratio: 16/10;
 }
-
 .bbot-gallery-main img {
   width: 100%;
   height: 100%;
