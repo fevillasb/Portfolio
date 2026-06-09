@@ -267,12 +267,17 @@
     </div>
 
     <!-- VIDEO -->
-<div class="bbot-video-wrap fade-up">
-  <video controls width="100%" playsinline>
-    <source src="assets/Bbot%20move.mp4" type="video/mp4">
-    Your browser doesn't support video playback.
-  </video>
-</div>
+    <div class="bbot-video-wrap fade-up">
+      <!-- 📝 EDIT: Replace with your YouTube embed URL or use a <video> tag for a local file -->
+      <!-- YouTube example: src="https://www.youtube.com/embed/YOUR_VIDEO_ID" -->
+      <!-- Local video example: replace the entire iframe with:
+           <video controls><source src="assets/bbot-demo.mp4" type="video/mp4"></video> -->
+      <div class="bbot-video-placeholder">
+        <span>📝 Drop your video embed here</span>
+        <p>YouTube iframe or &lt;video&gt; tag</p>
+      </div>
+    </div>
+
     <!-- IMAGE GALLERY -->
     <div class="bbot-gallery fade-up">
       <!-- 📝 EDIT: Add your Bbot images to assets/ and update filenames -->
@@ -281,13 +286,10 @@
       </div>
       <div class="bbot-gallery-side">
         <!-- 📝 EDIT: Add 2–3 more angles/build photos -->
-     <div class="bbot-gallery-thumb">
-    <img src="assets/balance.png" alt="Robot balancing upright">
-  </div>
-  <div class="bbot-gallery-thumb">
-    <img src="assets/IMG_6323.jpeg" alt="Robot build detail">
-  </div>
-</div>
+        <div class="bbot-gallery-thumb bbot-placeholder"><span>Photo 2</span></div>
+        <div class="bbot-gallery-thumb bbot-placeholder"><span>Photo 3</span></div>
+      </div>
+    </div>
 
     <!-- TECHNICAL DEEP DIVE -->
     <div class="bbot-tech fade-up">
@@ -295,16 +297,16 @@
         <p class="bbot-tech-label">Control System</p>
         <h3 class="bbot-tech-title">PID Balance Loop</h3>
         <p class="bbot-tech-body">
-          An MPU-6050 IMU provides accelerometer and gyroscope data, 
-          fused by a two-state Kalman filter that estimates the tilt angle while continuously tracking and removing gyro bias. 
-          The Arduino runs a discrete PID loop every cycle — timing each step from a microsecond 
-          clock — and drives the motors to hold the robot at vertical.
+          An MPU-6050 IMU provides raw accelerometer and gyroscope data, fused via a
+          complementary filter to estimate the robot's tilt angle. The Arduino reads this
+          angle at ~100 Hz and runs a discrete PID controller, computing a motor output
+          that drives the robot back toward vertical.
         </p>
         <!-- 📝 EDIT: Update with your actual tuned values -->
         <div class="bbot-gains">
-          <div class="bbot-gain"><span class="gain-label">Kp</span><span class="gain-val">90</span></div>
-          <div class="bbot-gain"><span class="gain-label">Ki</span><span class="gain-val">0.2</span></div>
-          <div class="bbot-gain"><span class="gain-label">Kd</span><span class="gain-val">6</span></div>
+          <div class="bbot-gain"><span class="gain-label">Kp</span><span class="gain-val">—</span></div>
+          <div class="bbot-gain"><span class="gain-label">Ki</span><span class="gain-val">—</span></div>
+          <div class="bbot-gain"><span class="gain-label">Kd</span><span class="gain-val">—</span></div>
         </div>
       </div>
 
@@ -313,11 +315,11 @@
         <h3 class="bbot-tech-title">Mechanical &amp; Electronics</h3>
         <ul class="bbot-spec-list">
           <!-- 📝 EDIT: Update with your actual components -->
-          <li><span class="spec-key">MCU</span><span class="spec-val">Arduino UNO R3 / Uno</span></li>
+          <li><span class="spec-key">MCU</span><span class="spec-val">Arduino Nano / Uno</span></li>
           <li><span class="spec-key">IMU</span><span class="spec-val">MPU-6050 (I²C)</span></li>
-          <li><span class="spec-key">Motors</span><span class="spec-val">2x TT gear motors</span></li>
-          <li><span class="spec-key">Driver</span><span class="spec-val">DRV 8833 Dual H-bridge</span></li>
-          <li><span class="spec-key">Power</span><span class="spec-val">4x AA (motor supply)</span></li>
+          <li><span class="spec-key">Motors</span><span class="spec-val">DC gear motors w/ encoders</span></li>
+          <li><span class="spec-key">Driver</span><span class="spec-val">L298N H-bridge</span></li>
+          <li><span class="spec-key">Power</span><span class="spec-val">2S LiPo</span></li>
           <li><span class="spec-key">Frame</span><span class="spec-val">Fully 3D-printed (PLA)</span></li>
         </ul>
       </div>
@@ -326,10 +328,11 @@
         <p class="bbot-tech-label">Tuning &amp; Testing</p>
         <h3 class="bbot-tech-title">Step-Disturbance Method</h3>
         <p class="bbot-tech-body">
-          Gains were tuned iteratively by applying step disturbances (hand pushes) and observing recovery behavior.
-          Kp was raised until oscillation appeared, then Kd was increased to damp it.
-          Ki was added last to eliminate steady-state lean. 
-          Final validation used serial-plotted angle data to confirm settling time and overshoot were within acceptable bounds.
+          Gains were tuned iteratively by applying step disturbances (hand pushes) and
+          observing recovery behavior. Kp was raised until oscillation appeared, then Kd
+          was increased to damp it. Ki was added last to eliminate steady-state lean.
+          Final validation used serial-plotted angle data to confirm settling time and
+          overshoot were within acceptable bounds.
         </p>
       </div>
     </div>
