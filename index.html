@@ -297,10 +297,10 @@
         <p class="bbot-tech-label">Control System</p>
         <h3 class="bbot-tech-title">PID Balance Loop</h3>
         <p class="bbot-tech-body">
-          An MPU-6050 IMU provides raw accelerometer and gyroscope data, fused via a
-          complementary filter to estimate the robot's tilt angle. The Arduino reads this
-          angle at ~100 Hz and runs a discrete PID controller, computing a motor output
-          that drives the robot back toward vertical.
+          An MPU-6050 IMU provides accelerometer and gyroscope data, 
+          fused by a two-state Kalman filter that estimates the tilt angle while continuously tracking and removing gyro bias. 
+          The Arduino runs a discrete PID loop every cycle — timing each step from a microsecond 
+          clock — and drives the motors to hold the robot at vertical.
         </p>
         <!-- 📝 EDIT: Update with your actual tuned values -->
         <div class="bbot-gains">
