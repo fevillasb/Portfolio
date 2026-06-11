@@ -378,6 +378,20 @@ section { padding: 100px 0; }
   letter-spacing: 0.04em;
 }
 
+.project-link {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--gray-600);
+  text-decoration: none;
+  margin-top: 20px;
+  border-bottom: 1px solid var(--gray-200);
+  padding-bottom: 2px;
+  align-self: flex-start;
+  transition: color 0.2s, border-color 0.2s;
+}
+.project-link:hover { color: var(--black); border-color: var(--gray-400); }
+
 /* BBOT SPOTLIGHT */
 #bbot { background: var(--gray-100); }
 
@@ -584,6 +598,160 @@ section { padding: 100px 0; }
   .bbot-gallery-side { flex-direction: row; }
   .bbot-gallery-thumb { aspect-ratio: 4/3; }
   .bbot-tech { grid-template-columns: 1fr; }
+}
+
+/* IAM3D ROVER SPOTLIGHT */
+#iam3d { background: var(--white); }
+
+.rover-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.rover-intro {
+  font-size: 16px;
+  color: var(--gray-600);
+  font-weight: 300;
+  line-height: 1.8;
+  padding-bottom: 8px;
+}
+
+/* Build stats */
+.rover-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--gray-200);
+  border: 1px solid var(--gray-200);
+  margin-bottom: 48px;
+}
+
+.rover-stat {
+  background: var(--white);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.rover-stat-num {
+  font-size: 32px;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  line-height: 1;
+}
+
+.rover-stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+/* Gallery */
+.rover-gallery {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2px;
+  margin-bottom: 48px;
+  background: var(--gray-200);
+}
+
+.rover-gallery-main {
+  overflow: hidden;
+  background: var(--gray-200);
+  aspect-ratio: 4/3;
+}
+.rover-gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.rover-gallery-main:hover img { transform: scale(1.03); }
+
+.rover-gallery-side {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.rover-gallery-thumb {
+  flex: 1;
+  overflow: hidden;
+  background: var(--gray-200);
+}
+.rover-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.rover-gallery-thumb:hover img { transform: scale(1.03); }
+
+/* Subsystem breakdown */
+.rover-systems {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--gray-200);
+  border: 1px solid var(--gray-200);
+  margin-bottom: 48px;
+}
+
+.rover-system {
+  background: var(--white);
+  padding: 40px 36px;
+}
+
+.rover-system-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 12px;
+}
+
+.rover-system-title {
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+
+.rover-system-body {
+  font-size: 14px;
+  color: var(--gray-600);
+  font-weight: 300;
+  line-height: 1.75;
+}
+
+/* Tools */
+.rover-tools-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 16px;
+}
+
+@media (max-width: 860px) {
+  .rover-header { grid-template-columns: 1fr; gap: 24px; }
+  .rover-stats { grid-template-columns: repeat(2, 1fr); }
+  .rover-gallery { grid-template-columns: 1fr; }
+  .rover-gallery-side { flex-direction: row; }
+  .rover-gallery-thumb { aspect-ratio: 4/3; }
+  .rover-systems { grid-template-columns: 1fr; }
 }
 
 /* EXPERIENCE */
