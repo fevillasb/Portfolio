@@ -657,15 +657,17 @@ section { padding: 100px 0; }
 .rover-gallery {
   display: grid;
   grid-template-columns: 2fr 1fr;
+  grid-template-rows: minmax(0, 1fr);
   gap: 2px;
   margin-bottom: 48px;
   background: var(--gray-200);
+  aspect-ratio: 16 / 9;
 }
 
 .rover-gallery-main {
   overflow: hidden;
   background: var(--gray-200);
-  aspect-ratio: 4/3;
+  min-height: 0;
 }
 .rover-gallery-main img {
   width: 100%;
@@ -680,10 +682,12 @@ section { padding: 100px 0; }
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-height: 0;
 }
 
 .rover-gallery-thumb {
   flex: 1;
+  min-height: 0;
   overflow: hidden;
   background: var(--gray-200);
 }
@@ -748,7 +752,8 @@ section { padding: 100px 0; }
 @media (max-width: 860px) {
   .rover-header { grid-template-columns: 1fr; gap: 24px; }
   .rover-stats { grid-template-columns: repeat(2, 1fr); }
-  .rover-gallery { grid-template-columns: 1fr; }
+  .rover-gallery { grid-template-columns: 1fr; grid-template-rows: auto; aspect-ratio: auto; }
+  .rover-gallery-main { aspect-ratio: 16/10; }
   .rover-gallery-side { flex-direction: row; }
   .rover-gallery-thumb { aspect-ratio: 4/3; }
   .rover-systems { grid-template-columns: 1fr; }
